@@ -7,7 +7,7 @@ const App = () => {
 
     	<View>
 
-			<Text>
+			<Text style={{fontSize: 25, color: 'blue', margin: 20}}>
 				Olá mundo!
 			</Text>
 
