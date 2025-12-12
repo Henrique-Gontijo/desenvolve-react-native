@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Text, Image, FlatList } from 'react-native';
+ import { View, ScrollView, Text, Image, FlatList, TextInput } from 'react-native';
 
 
 const App = () => {
@@ -15,11 +15,15 @@ const App = () => {
 
 				<Image source={{uri: 'https://i.redd.it/l8chp2r5qe6a1.jpg' }} style={{width: 300, height: 300}}/>
 
-				<FlatList data={[{key: 'Arroz'}, {key: 'Feijão'}, {key: 'Carne'}]} renderItem={({item}) => <Text>{item.key}</Text>}/>
+				<FlatList 
+					data={[{key: 'Arroz'}, {key: 'Feijão'}, {key: 'Carne'}]} 
+					renderItem={({item}) => <Text>{item.key}</Text>} style={{marginTop: 32, fontSize: 20}}
+				/>
 
-				<Image 
-					source={{ uri: 'https://static.wikia.nocookie.net/gtawiki/images/b/bd/BigSmoke-GTASA.jpg/revision/latest?cb=20230629061252' }} 
-					style={{ width: 300, height: 300, marginTop: 100 }}
+				<TextInput 
+					placeholder="Digite o seu nome" placeholderTextColor={"darkblue"}
+					style={{height: 40, borderColor: '#1E1EFA', borderWidth: 2, marginTop: 32, borderRadius: 8, 
+						backgroundColor: '#1E64FA', color: 'white'}}
 				/>
 
 			</ScrollView>
