@@ -1,54 +1,37 @@
-import React from 'react';
- import { View, ScrollView, Text, Image, FlatList, TextInput, Button, TouchableOpacity, Switch, ActivityIndicator } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Button } from 'react-native';
 
 
-const App = () => {
-	return (
+class App extends Component {
+	constructor(props){
+		super(props);
 
-    	<View style={{justifyContent: 'center', alignItems: 'center'}}>
+		this.state = {
+			nome: 'Carlos'
+		};
+		this.entrar = this.entrar.bind(this);
+	}
 
-				<ScrollView>
-					
-				<Text style={{ fontSize: 25, color: 'blue', marginTop: 40, textAlign: 'center', marginBottom: 32}}>
-					Olá, meu chapa!
-				</Text>
+	entrar(){
+		this.setState({
+			nome: 'Leandro'
+		});
+	}
 
-				<Image source={{uri: 'https://i.redd.it/l8chp2r5qe6a1.jpg' }} style={{width: 300, height: 300}}/>
+	render() {
 
-				<FlatList 
-					data={[{key: 'Arroz'}, {key: 'Feijão'}, {key: 'Carne'}]} 
-					renderItem={({item}) => <Text>{item.key}</Text>} style={{marginTop: 32, fontSize: 20}}
-				/>
+		return (
 
-				<TextInput 
-					placeholder="Digite o seu nome" placeholderTextColor={"darkblue"}
-					style={{
-						height: 40, borderColor: '#1E1EFA', borderWidth: 2, marginTop: 32, 
-						borderRadius: 8, backgroundColor: '#1E64FA', color: 'white'
-					}}
-				/>
+			<View style={{marginTop: 30}}> 
 
-				<View style={{marginTop: 32}}>
-					<Button title="Cadastrar" 
-						onPress={() => alert("Cadastro realizado com sucesso!\n\nSó falta descobrir no que raios você se cadastrou :)")}
-					/>
-				</View>
+				<Button title="Entrar" onPress={this.entrar}/>
 
-				<View style={{marginTop: 32}}>
-					<TouchableOpacity onPress={() => alert("Inscrição realizada com sucesso!\n\nTambém não sei no que você se inscreveu")}>
-						<Text style={{fontSize: 20, backgroundColor: 'yellow', textAlign: 'center', padding: 5}}>Inscrever</Text>
-					</TouchableOpacity>
-				</View>
+				<Text style={{ fontSize:  30, color: 'blue', textAlign: 'center' }}>{this.state.nome}</Text>
 
-				<Switch value={true} onValueChange={(value) => console.log(value)} style={{marginTop: 32}}/>
+			</View>
 
-				<ActivityIndicator size={'large'} color={'#1E1EFA'} style={{marginTop: 32}}/>
-
-			</ScrollView>
-
-    	</View>
-
-	)
+		);
+	}
 }
 
 export default App;
