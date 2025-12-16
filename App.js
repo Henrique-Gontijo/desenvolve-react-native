@@ -1,5 +1,5 @@
 import React from 'react';
- import { View, ScrollView, Text, Image, FlatList, TextInput, Button } from 'react-native';
+ import { View, ScrollView, Text, Image, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
 
 
 const App = () => {
@@ -32,6 +32,12 @@ const App = () => {
 					<Button title="Cadastrar" 
 						onPress={() => alert("Cadastro realizado com sucesso!\n\nSó falta descobrir no que raios você se cadastrou :)")}
 					/>
+				</View>
+
+				<View style={{marginTop: 32}}>
+					<TouchableOpacity onPress={() => alert("Inscrição realizada com sucesso!\n\nTambém não sei no que você se inscreveu")}>
+						<Text style={{fontSize: 20, backgroundColor: 'yellow', textAlign: 'center', padding: 5}}>Inscrever</Text>
+					</TouchableOpacity>
 				</View>
 
 			</ScrollView>
