@@ -1,5 +1,5 @@
 import React from 'react';
- import { View, ScrollView, Text, Image, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
+ import { View, ScrollView, Text, Image, FlatList, TextInput, Button, TouchableOpacity, Switch, ActivityIndicator } from 'react-native';
 
 
 const App = () => {
@@ -39,6 +39,10 @@ const App = () => {
 						<Text style={{fontSize: 20, backgroundColor: 'yellow', textAlign: 'center', padding: 5}}>Inscrever</Text>
 					</TouchableOpacity>
 				</View>
+
+				<Switch value={true} onValueChange={(value) => console.log(value)} style={{marginTop: 32}}/>
+
+				<ActivityIndicator size={'large'} color={'#1E1EFA'} style={{marginTop: 32}}/>
 
 			</ScrollView>
 
