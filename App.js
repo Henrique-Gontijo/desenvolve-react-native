@@ -1,37 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
-class App extends Component {
-	constructor(props){
-		super(props);
+export default function Fire() {
 
-		this.state = {
-			nome: 'Carlos'
-		};
-		this.entrar = this.entrar.bind(this);
-	}
+	return (
 
-	entrar(){
-		this.setState({
-			nome: 'Leandro'
-		});
-	}
+		<View style={styles.container}> 
 
-	render() {
+		<Text style={{fontSize: 24}}>Firebase</Text>
 
-		return (
+		</View>
 
-			<View style={{marginTop: 30}}> 
-
-				<Button title="Entrar" onPress={this.entrar}/>
-
-				<Text style={{ fontSize:  30, color: 'blue', textAlign: 'center' }}>{this.state.nome}</Text>
-
-			</View>
-
-		);
-	}
+	);
 }
 
-export default App;
+const styles = StyleSheet.create({
+
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
+
+});
