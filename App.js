@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { db } from './src/firebaseConnection.js';
 
 
 export default function Fire() {
