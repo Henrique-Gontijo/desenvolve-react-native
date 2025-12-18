@@ -23,7 +23,7 @@ export default function App() {
 
 		<View style={styles.container}> 
 
-		<Text style={{fontSize: 24}}>Usuário: {nome}</Text>
+		<Text style={{fontSize: 24}}>Bem-vindo {nome}!</Text>
 
 		</View>
 
