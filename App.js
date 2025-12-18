@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { doc, getDoc, onSnapshot, query, collection } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot, query, collection, 
+	orderBy, limit} from 'firebase/firestore';
 import { db } from './src/firebaseConnection.js';
 
 
 export default function App() {
 
-	const [nome, setNome] = useState({
+	const [usuario, setUsuario] = useState({
 		nome: 'Carregando...',
 		email: 'Carregando...',
 		telefone: 'Carregando'
@@ -19,7 +20,17 @@ export default function App() {
 	useState('')
 
 	useEffect(() => {
-		const q = query(collection(db, 'usuario'));
+		const q = query(collection(db, 'usuario'),
+		orderBy('nome', 'desc'), limit(1)
+	);
+
+	const unsubscribe = onSnapshot(q, querySnapshot) => {
+		if (!querySnapshot.empty) {
+			setUsuario(querySnapshot.doc[0].data());
+		} else {
+			console.log('Nenhum usuário encontrado!');
+		}
+	};
 
 		async function getDados () {
 			onSnapshot(doc(db, 'usuario', '1'), (doc) => {
