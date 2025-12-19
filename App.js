@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { doc, getDoc, addDoc, onSnapshot, query, collection, 
 	orderBy, limit} from 'firebase/firestore';
 import { db } from './src/firebaseConnection.js';
@@ -69,6 +69,18 @@ export default function App() {
 			<Text style={{fontSize: 24}}>Nome: {usuario.nome}</Text>
 			<Text style={{fontSize: 24}}>E-mail: {usuario.email}</Text>
 			<Text style={{fontSize: 24}}>Telefone: {usuario.telefone}</Text>
+
+			<TextInput style={styles.input} placeholder='Nome' 
+				value={novoNome} onChangeText={setNovoNome}/>
+			<TextInput style={styles.input} placeholder='E-mail' 
+				value={novoEmail} onChangeText={setNovoEmail} keyboardType='email-adress'/>
+			<TextInput style={styles.input} placeholder='Telefone' 
+				value={novoTelefone} onChangeText={setNovoTelefone} keyboardType='numeric'/>
+
+			<TouchableOpacity style={styles.button} onPress={handleRegister}>
+				<Text style={styles.buttonText}>Adicionar</Text>
+			</TouchableOpacity>
+			
 		</View>
 
 	);
@@ -78,8 +90,31 @@ const styles = StyleSheet.create({
 
 	container: {
 		flex: 1,
+		paddingTop: 40,
 		justifyContent: 'center',
-		alignItems: 'center'
-	}
+		alignItems: 'center',
+	},
+
+	input: {
+		width: '80%',
+		height: 40,
+		padding: 8,
+		marginTop: 16,
+		borderWidth: 1,
+		borderRadius: 8,
+		borderColor: 'grey',
+	},
+
+	button: {
+		backgroundColor: '#000',
+		padding: 6,
+		marginTop: 16,
+		borderRadius: 8,
+	},
+
+	buttonText: {
+		color: '#FFF',
+		padding: 4,
+	},
 
 });
