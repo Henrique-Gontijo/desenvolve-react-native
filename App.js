@@ -55,18 +55,20 @@ export default function App() {
 			setNovoEmail('');
 			setNovoTelefone('');
 		} catch (error) {
-			console.error('"Puts, deu zebra!"\n\n Ocorreu algum erro ao registrar o novo usuário, veja: \n\n', error);
+			console.error(
+				'"Puts, deu zebra!"\n\n Ocorreu algum erro ao registrar o novo usuário, veja: \n\n', error
+			);
 		}
-
-		return;
 	}
 
 	return (
 
 		<View style={styles.container}> 
+			<Text style={{fontSize: 24}}>Último cadastro: </Text>
 
-		<Text style={{fontSize: 24}}>Usuário: {nome}!</Text>
-
+			<Text style={{fontSize: 24}}>Nome: {usuario.nome}</Text>
+			<Text style={{fontSize: 24}}>E-mail: {usuario.email}</Text>
+			<Text style={{fontSize: 24}}>Telefone: {usuario.telefone}</Text>
 		</View>
 
 	);
