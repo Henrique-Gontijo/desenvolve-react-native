@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { doc, getDoc, onSnapshot, query, collection, 
+import { doc, getDoc, addDoc, onSnapshot, query, collection, 
 	orderBy, limit} from 'firebase/firestore';
 import { db } from './src/firebaseConnection.js';
 
@@ -21,26 +21,45 @@ export default function App() {
 
 	useEffect(() => {
 		const q = query(collection(db, 'usuario'),
-		orderBy('nome', 'desc'), limit(1)
-	);
+			orderBy('nome', 'desc'), limit(1)
+		);
 
-	const unsubscribe = onSnapshot(q, querySnapshot) => {
-		if (!querySnapshot.empty) {
-			setUsuario(querySnapshot.doc[0].data());
-		} else {
-			console.log('Nenhum usuário encontrado!');
-		}
-	};
-
-		async function getDados () {
-			onSnapshot(doc(db, 'usuario', '1'), (doc) => {
-				setNome(doc.data()?.nome);
-			});
-		}
-
-		getDados();
-		
+		const unsubscribe = onSnapshot(q, (querySnapshot) => {
+			if (!querySnapshot.empty) {
+				setUsuario(querySnapshot.docs[0].data());
+			} else {
+				console.log('Nenhum usuário encontrado!');
+			}
+		});
+		return () => unsubscribe();
 	}, []);
+
+	// Adicionar usuário
+	async function handleRegister() {
+		if (novoNome === '' || novoEmail === '' || novoTelefone === '') {
+			alert('Preencha todos os Campos');
+			return;
+		}
+
+		try {
+			await addDoc(collection(db, 'usuario'), {
+				nome: novoNome,
+				email: novoEmail,
+				telefone: novoTelefone
+			});
+
+			console.log('Usuário registrado com sucesso!');
+
+			//Limpar os campos após cadastro
+			setNovoNome('');
+			setNovoEmail('');
+			setNovoTelefone('');
+		} catch (error) {
+			console.error('"Puts, deu zebra!"\n\n Ocorreu algum erro ao registrar o novo usuário, veja: \n\n', error);
+		}
+
+		return;
+	}
 
 	return (
 
