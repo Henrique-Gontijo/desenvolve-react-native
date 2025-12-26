@@ -3,6 +3,29 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			numero: 0,
+			botao: 'Iniciar',
+			ultimo: null
+		};
+		this.tempo = null;
+		this.iniciar = this.iniciar.bind(this);
+		this.recomecar = this.recomecar.bind(this);
+		
+		if (this.tempo !== null) {
+			clearInterval(this.tempo);
+			this.tempo = null;
+			this.setState({botao: 'Iniciar'});
+		} else {
+			this.setInterval(() => {
+				this.setState({numero: this.state.numero + 0.1})
+			}, 100);
+		}
+	}
+
+	
 
 	render() {
 		return (
