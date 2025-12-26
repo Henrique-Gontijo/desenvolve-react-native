@@ -6,23 +6,31 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			numero: 0,
+			segundos: 0,
 			botao: 'Iniciar',
 			ultimo: null
 		};
 		this.tempo = null;
 		this.iniciar = this.iniciar.bind(this);
-		this.recomecar = this.recomecar.bind(this);
-		
+		this.recomecar = this.limpar.bind(this);
+	}
+
+	iniciar() {
 		if (this.tempo !== null) {
 			clearInterval(this.tempo);
 			this.tempo = null;
 			this.setState({botao: 'Iniciar'});
 		} else {
-			this.setInterval(() => {
-				this.setState({numero: this.state.numero + 0.1})
+			this.tempo = setInterval(() => {
+				this.setState({segundos: (this.state.segundos * 10 + 1)/10})
 			}, 100);
 		}
+
+		this.setState({botao: 'Parar'})
+	}
+
+	limpar() {
+		return
 	}
 
 	
@@ -33,14 +41,14 @@ class App extends Component {
 
 				<Text style={styles.titulo}>Cronômetro</Text>
 				<Image source={require('./src/images/crono.png')} style={styles.crono}/>
-				<Text style={styles.tempo}>0.0</Text>
+				<Text style={styles.tempo}>{(this.state.segundos).toFixed(1)}</Text>
 
 				<View style={styles.areaBotao}>
-					<TouchableOpacity style={styles.btn}>
-						<Text style={styles.botaoTexto}>Iniciar</Text>
+					<TouchableOpacity style={styles.btn} onPress={this.iniciar}>
+						<Text style={styles.botaoTexto}>{this.state.botao}</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.btn}>
-						<Text style={styles.botaoTexto}>Recomeçar</Text>
+						<Text style={styles.botaoTexto}>Limpar</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
