@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TOuchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 
 class App extends Component {
@@ -12,6 +12,14 @@ class App extends Component {
 				<Image source={require('./src/images/crono.png')} style={styles.crono}/>
 				<Text style={styles.tempo}>0.0</Text>
 
+				<View style={styles.areaBotao}>
+					<TouchableOpacity style={styles.btn}>
+						<Text style={styles.botaoTexto}>Iniciar</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.btn}>
+						<Text style={styles.botaoTexto}>Recomeçar</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		);
 	} 
@@ -24,7 +32,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		backgroundColor: 'orange',
-		justifyContent: 'center',
+		justifyContent: 'center'
 	},
 	titulo: {
 		fontSize: 50,
@@ -32,13 +40,31 @@ const styles = StyleSheet.create({
 
 	},
 	crono: {
-		width: 450,
-		height: 450,
+		width: 400,
+		height: 400,
+		marginTop: 20,
 	},
 	tempo: {
-		marginTop: -290,
-		fontSize: 60,
+		marginTop: -248,
+		fontSize: 40
 	},
+	botaoTexto: {
+		fontSize: 24,
+		fontWeight: 500,
+	},
+	btn: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		margin: 8,
+		backgroundColor: 'white',
+		borderRadius: 11
+
+	},
+	areaBotao: {
+		flexDirection: 'row',
+		marginTop: 220
+	}
 
 });
 
